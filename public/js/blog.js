@@ -1,11 +1,19 @@
 $(document).ready(function() {
+
+  var postCategorySelect;
+
+  $('#category').on('click', function(event) {
+    var postCategorySelect = event.target.innerHTML;
+    console.log('hi', postCategorySelect)
+    handleCategoryChange(postCategorySelect);
+  });
+
   // blogContainer holds all of our posts
   var blogContainer = $(".blog-container");
-  var postCategorySelect = $("#category");
   // Click events for the edit and delete buttons
   $(document).on("click", "button.delete", handlePostDelete);
   $(document).on("click", "button.edit", handlePostEdit);
-  postCategorySelect.on("change", handleCategoryChange);
+  // $('#category').on("change", handleCategoryChange);
   var posts;
 
   // This function grabs posts from the database and updates the view
@@ -25,6 +33,8 @@ $(document).ready(function() {
       }
     });
   }
+
+ 
 
   // This function does an API call to delete posts
   function deletePost(id) {
@@ -122,9 +132,12 @@ $(document).ready(function() {
   }
 
   // This function handles reloading new posts when the category changes
-  function handleCategoryChange() {
-    var newPostCategory = $(this).val();
+  function handleCategoryChange(postCategorySelect) {
+    var newPostCategory = postCategorySelect;
     getPosts(newPostCategory);
-  }
+    console.log('This is new posts category: ', newPostCategory, '22')
+  };
+
+  
 
 });
