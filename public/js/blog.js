@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  var postCategorySelect;
+  // var postCategorySelect;
 
   $('#category').on('click', function(event) {
     var postCategorySelect = event.target.innerHTML;
